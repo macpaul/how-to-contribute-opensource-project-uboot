@@ -11,11 +11,13 @@
 ## 如何製作好的patch
 
 其實跟coding style一樣，不少專案的說明文件都會附帶製作好的patch的準則。好的patch（或是patch set）不外乎幾個原則：
-1.按照寫code的先後邏輯順序
+1.按照寫code的先後邏輯順序組成patch
 2.patch應該要易於分割重組，力求簡單明瞭
 3.相關的patch放一起，無關的patch下次再提交
 4.patch必須盡可能不要影響其他模組或功能。
-5.
-https://www.denx.de/wiki/U-Boot/Patches
+5.如果修改到某個通用的介面，要一起修改其他有用到這個介面程式
+6.patch不應該造成其他模組編譯錯誤，因此送出前最好都要先在local環境確認編譯和執行正確
+
+例如u-boot的wiki上，就有很詳盡的patch製作準則說明。[https://www.denx.de/wiki/U-Boot/Patches]
 
 ##
