@@ -11,13 +11,15 @@
 ## 如何製作好的patch
 
 其實跟coding style一樣，不少專案的說明文件都會附帶製作好的patch的準則。好的patch（或是patch set）不外乎幾個原則：
-1.按照寫code的先後邏輯順序組成patch
-2.patch應該要易於分割重組，力求簡單明瞭
-3.相關的patch放一起，無關的patch下次再提交
-4.patch必須盡可能不要影響其他模組或功能。
-5.如果修改到某個通用的介面，要一起修改其他有用到這個介面程式
-6.patch不應該造成其他模組編譯錯誤，因此送出前最好都要先在local環境確認編譯和執行正確
+* 按照寫code的先後邏輯順序組成patch
+* patch應該要易於分割重組，力求簡單明瞭
+* 相關的patch放一起，無關的patch下次再提交
+* patch必須盡可能不要影響其他模組或功能。
+* 如果修改到某個通用的介面，要一起修改其他有用到這個介面程式
+* patch不應該造成其他模組編譯錯誤，因此送出前最好都要先在local環境確認編譯和執行正確
 
-例如u-boot的wiki上，就有很詳盡的patch製作準則說明：[https://www.denx.de/wiki/U-Boot/Patches](https://www.denx.de/wiki/U-Boot/Patches)
+例如u-boot的wiki上，就有很詳盡的patch製作準則說明：[https://www.denx.de/wiki/U-Boot/Patches](https://www.denx.de/wiki/U-Boot/Patches)，這些準則，通常也適用於Linux和其他的Open Source專案。u-boot的這個wiki頁面，也提到提交Linux的Patch準則：[https://lwn.net/Articles/139918/](https://lwn.net/Articles/139918/)。你看，共通概念通常不會差很多；以下針對提交u-boot的patch的準則，挑重點逐條解說。
 
-##
+## 提交u-boot patch的準則
+
+* Release early, release often. 這也是所有open source專案的最重要的準則之一。盡可能早一點release（新版本），盡可能頻繁的release。這樣新功能和新的bug fix才能越快讓使用者受益；如果有新的bug也才能及早發現，及早處理。這個準則對於送patch到專案也是一樣的。有的時候你的patch被拒絕不是因為他不好，可能只是需要跟大家討論，然後需要很多的修改以符合大家的需求。甚至在送出**PATCH**之前，就先把你的構想在郵件論壇上先找人討論，會有助於之後你送patch的工作。提出修改的構想，請論壇上的朋友給予意見，這種形式的作法我們通常叫他：**RFC**，Request for Comment。之後你就可以根據郵件論壇上大家討論的想法，來形成你要提交的patch的架構，以及撰寫的程式流程。
