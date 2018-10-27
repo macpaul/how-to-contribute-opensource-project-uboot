@@ -18,7 +18,7 @@
 * 如果修改到某個通用的介面，要一起修改其他有用到這個介面程式
 * patch不應該造成其他模組編譯錯誤，因此送出前最好都要先在local環境確認編譯和執行正確
 
-例如u-boot的wiki上，就有很詳盡的patch製作準則說明：[https://www.denx.de/wiki/U-Boot/Patches](https://www.denx.de/wiki/U-Boot/Patches)，這些準則，通常也適用於Linux和其他的Open Source專案。u-boot的這個wiki頁面，也提到提交Linux的Patch準則：[https://lwn.net/Articles/139918/](https://lwn.net/Articles/139918/)。（必讀）你看，共通概念通常不會差很多，雖然Linux這篇守則完成時間比較早，也非常建議一定要讀過一次。以下針對提交u-boot的patch的準則，挑重點逐條解說。
+例如u-boot的wiki上，就有很詳盡的patch製作準則說明：[https://www.denx.de/wiki/U-Boot/Patches](https://www.denx.de/wiki/U-Boot/Patches)，這些準則，通常也適用於Linux和其他的Open Source專案。u-boot的這個wiki頁面，也提到提交Linux的Patch準則：[https://lwn.net/Articles/139918/](https://lwn.net/Articles/139918/)。（必讀）你看，共通概念通常不會差很多，雖然Linux這篇守則完成時間比較早，建議一定要讀過一次，所以我們這邊就不針對Linux這篇守則另外說明。以下針對提交u-boot的patch的準則，挑重點逐條解說。
 
 ## 提交u-boot patch的準則
 
@@ -33,3 +33,55 @@
 ** 如果一組邏輯的修正包含或者增加了新的檔案，那這些修改必須包在**一個patch**中送出。
 
 上面這兩段白話就是：譬如你寫了兩個個功能，那一個功能就只能包在一組patch set裡面。第二個功能要分開處理。如果有一個功能，新增了一個.h檔，兩個新的.c檔，修改兩個舊的.c檔；那這五個檔案都必須被包在同一個patch裡面送出。這樣可以維持邏輯上的先後順序，並且避免每一筆patch之間的編譯失敗。
+
+* 非功能上的改變，例如Coding style的修正，不要跟bug fix一起提交。並請加註：**cosmetic**。把這兩者分開對整個review過程大大的有幫助。不過你提交的bug fix仍然得符合coding style。
+
+* 使用checkpatch.pl的幾點建議（這邊只摘錄部分，原始內容還是請自己閱讀）
+** Checkpatch不是完美的，所以請用common sense來判斷他回報的結果。
+** 如果patch的一部份被報出問題，而且不是這次所patch修改的，而是已經存在的舊程式碼。請先送出coding style的修正，同時記得要標註**cosmetic**。
+
+* 用純文字送出你的patch，禁止HTML、MIME、連結、壓縮、夾檔。只收純文字。
+
+最好的方法是用"git format-patch"指令。
+Patch請用"master" branch為參照基礎，除非你要送的patch是針對release cycle中的"next"。通常是release前測試版發現的bug修正，或是緊急到非得趕上release的特殊功能。
+
+* 確定你的電子郵件軟體不會亂改你的patch，譬如自動轉換tab和空白，或者自動斷行。因此最好是用"**git send-email**"或是"**git imap-send**"指令。
+
+* Patch的主旨請用確實明確的描述填寫，然後不要超過60字元之類的。
+
+* 主旨開頭必須要用有意義的tag，這個tag通常是module name或者是功能。
+
+* 主旨必須帶**[PATCH]**字串，可以用**git format-patch**自動產生。
+
+* 如果你送出一組patch set，請確保主旨和標題有描述patch的順序和總數目。（**git format-pach -n**）。如果這組patch set比較複雜也比較多，你可以用（**git format-pach -n --cover-letter），多加一筆針對這份patch set的摘要說明的patch。
+
+* Patch的內容部分
+** Bug fix：要寫上原來是什麼bug，有什麼現象，或者如何重現這個bug。然後說明你如何修正這個問題。
+** New feature（新功能）：請說明這是什麼功能，然後你怎麼實做的。
+
+* 郵件論壇的郵件大小上限為100kB，如果一個patch的大小超過他，你可能就應該拆分你的patch成幾個不同的邏輯。如果你的patch在未壓縮的狀況下超過這個大小，而且絕對無法分割。這個時候才能使用URL的方式提交你的patch。請放在一個至少可以存在很長的時間的位置；用"pastebin"（一種貼上程式碼的網站）是不夠的。你可以把太大的patch放到u-boot的wiki[TooBigPatches](https://www.denx.de/wiki/U-Boot/TooBigPatches)這裡。
+
+## 其他請務必自行閱讀的重要守則
+
+其他在U-boot的[https://www.denx.de/wiki/U-Boot/Patches](https://www.denx.de/wiki/U-Boot/Patches) wiki頁面上提到的重要守則還很多，就請認真閱讀。再列出幾點特別注意的項目如下。
+
+* 標註程式屬性、版權宣告、簽章 [Attributing_Code_Copyrights_Sign](https://www.denx.de/wiki/view/U-Boot/Patches#Attributing_Code_Copyrights_Sign)
+
+** 最重要的是送patch一定要記得用**git commit -s**簽章"**Signed-off-by:**"。
+** 如果你有重大的改動，大到足以在這個檔案宣告所有權時，或是你從頭寫的一份新的檔案，才能在檔案的開頭宣告**GPLv2+ SPDX-License-Identifier**以及你個人所屬的Copyright。
+** 如果你從其他專案移植或者copy檔案到u-boot，請明確說明從哪裡Copy過來的，最好甚至提供copy來的**git commit ID**
+
+* Commit message的慣例 [Commit message conventions](https://www.denx.de/wiki/view/U-Boot/Patches#Sending_updated_patch_versions)
+
+這邊比較瑣碎，但是讀一遍吧，加深印象只有益處。
+
+* 提交新版patch
+
+** 重送patch時，務必標上版本如"**[PATCH v2]**，可以用**git format-patch --subject-prefix="PATCH v2"**自動補上。
+** 在git commit簽章後到檔案列表中間，請務必手動補上每一筆patch的**ChangeLog**（修改的紀錄），由於cover letter並不會在維護人員管理patch的[Patchwork](http://patchwork.ozlabs.org/project/uboot/list/)中出現，就算你在cover-letter總結每一筆patch都在做什麼，你仍然需要在每一個版本的patch都補上ChangeLog。這邊請看u-boot wiki上的範例。
+** 為了維護郵件論壇上討論的品質，並且避免社群漏掉你某一版的patch，務必填上正確的"**In-reply-to:**"和"**References:**"的e-mail header。這樣patch跟社群給建議的討論串，才能用正確的順序方式呈現。也才會讓大家知道你這筆修正是針對哪個討論的部分送出的，並且維護正確的討論串的結構。
+
+* 務必檢查**master branch**能打上你的patch set，並且可以用**MAKEALL** script編譯所有的project，而沒有產生編譯warning和錯誤。
+** 同時建議使用out-of-tree編譯（用"-o" make option，以及"BUILD_DIR"環境變數）。例如：
+BUILD_DIR=/tmp/u-boot-build ./MAKEALL
+** 至少針對你的平台的architecture下所有的project都用MAKEALL編譯過一次。
