@@ -75,7 +75,7 @@ Patch請用"master" branch為參照基礎，除非你要送的patch是針對rele
 
 這邊比較瑣碎，但是讀一遍吧，加深印象只有益處。
 
-* 提交新版patch
+* 提交新版patch [Sending updated patch versions](https://www.denx.de/wiki/view/U-Boot/Patches#Sending_updated_patch_versions)
 
 ** 重送patch時，務必標上版本如"**[PATCH v2]**，可以用**git format-patch --subject-prefix="PATCH v2"**自動補上。
 ** 在git commit簽章後到檔案列表中間，請務必手動補上每一筆patch的**ChangeLog**（修改的紀錄），由於cover letter並不會在維護人員管理patch的[Patchwork](http://patchwork.ozlabs.org/project/uboot/list/)中出現，就算你在cover-letter總結每一筆patch都在做什麼，你仍然需要在每一個版本的patch都補上ChangeLog。這邊請看u-boot wiki上的範例。
