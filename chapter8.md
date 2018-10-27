@@ -25,7 +25,11 @@
 
 我們可以看到checkpatch指出./cmd/adc.c沒有格式問題。但是下一個檔案./cmd/aes.c就有格式問題，他同時也列出問題出在哪些地方。下面還有很多檔案，我們先不急著瀏覽，在這裡，你可以先按"q"退出less。
 
-我們用tig來看一下./cmd/aes.c的歷史紀錄，如果你的系統不認得tig，還請sudo apt install tig裝一下這個git log瀏覽器。tig ./cmd/aes.c. 你可以用上下左右鍵和Enter來瀏覽針對./cmd/aes.c的改動記錄，按'q'就可以離開tig。![](/assets/ch8_tig_cmd_aes.c_01.png)可以看到./cmd/aes.c總共有五筆紀錄，看起來這個檔案在2016年應該就存在了，進去看他的git log，可以發現這個檔案之前檔名是./cmd/cmd\_aes.c，因為統一移除cmd\_，在git裡這個檔案看起來才是新的檔案。第二筆資料是2017年，這筆看得出來他同時有另外一筆提交的檔案，是更改檔名aes.h為uboot\_aes.h，同理為了避免build error，必須在./cmd/aes.c的include file修正uboot\_aes.h的宣告。另外最新的兩筆修正看起來是為了移除無用的宣告，以及符合SPDX 授權宣告GPL-2.0+的改動。到這裡，不管這個aes.h, aes.c之前是從哪裡移植過來的（很有可能是Linux），但是看起來應該也演化成u-boot獨有的版本了。因此我們應該可以對checkpatch.pl指出的問題進行修正。**注意：一開始練習時請不要使用自動修正功能，自動修正也可能把正確的更改成錯的。**
+我們用tig來看一下./cmd/aes.c的歷史紀錄，如果你的系統不認得tig，還請sudo apt install tig裝一下這個git log瀏覽器。tig ./cmd/aes.c. 你可以用上下左右鍵和Enter來瀏覽針對./cmd/aes.c的改動記錄，按'q'就可以離開tig。
+
+![](/assets/ch8_tig_cmd_aes.c_01.png)
+
+可以看到./cmd/aes.c總共有五筆紀錄，看起來這個檔案在2016年應該就存在了，進去看他的git log，可以發現這個檔案之前檔名是./cmd/cmd\_aes.c，因為統一移除cmd\_，在git裡這個檔案看起來才是新的檔案。第二筆資料是2017年，這筆看得出來他同時有另外一筆提交的檔案，是更改檔名aes.h為uboot\_aes.h，同理為了避免build error，必須在./cmd/aes.c的include file修正uboot\_aes.h的宣告。另外最新的兩筆修正看起來是為了移除無用的宣告，以及符合SPDX 授權宣告GPL-2.0+的改動。到這裡，不管這個aes.h, aes.c之前是從哪裡移植過來的（很有可能是Linux），但是看起來應該也演化成u-boot獨有的版本了。因此我們應該可以對checkpatch.pl指出的問題進行修正。**注意：一開始練習時請不要使用自動修正功能，自動修正也可能把正確的更改成錯的。**
 
 ## 動手修正checkpatch指出的錯誤
 
