@@ -18,6 +18,6 @@
 5.如果修改到某個通用的介面，要一起修改其他有用到這個介面程式
 6.patch不應該造成其他模組編譯錯誤，因此送出前最好都要先在local環境確認編譯和執行正確
 
-例如u-boot的wiki上，就有很詳盡的patch製作準則說明。[https://www.denx.de/wiki/U-Boot/Patches)
+例如u-boot的wiki上，就有很詳盡的patch製作準則說明：[https://www.denx.de/wiki/U-Boot/Patches](https://www.denx.de/wiki/U-Boot/Patches)
 
 ##
