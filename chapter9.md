@@ -18,8 +18,18 @@
 * 如果修改到某個通用的介面，要一起修改其他有用到這個介面程式
 * patch不應該造成其他模組編譯錯誤，因此送出前最好都要先在local環境確認編譯和執行正確
 
-例如u-boot的wiki上，就有很詳盡的patch製作準則說明：[https://www.denx.de/wiki/U-Boot/Patches](https://www.denx.de/wiki/U-Boot/Patches)，這些準則，通常也適用於Linux和其他的Open Source專案。u-boot的這個wiki頁面，也提到提交Linux的Patch準則：[https://lwn.net/Articles/139918/](https://lwn.net/Articles/139918/)。你看，共通概念通常不會差很多；以下針對提交u-boot的patch的準則，挑重點逐條解說。
+例如u-boot的wiki上，就有很詳盡的patch製作準則說明：[https://www.denx.de/wiki/U-Boot/Patches](https://www.denx.de/wiki/U-Boot/Patches)，這些準則，通常也適用於Linux和其他的Open Source專案。u-boot的這個wiki頁面，也提到提交Linux的Patch準則：[https://lwn.net/Articles/139918/](https://lwn.net/Articles/139918/)。（必讀）你看，共通概念通常不會差很多，雖然Linux這篇守則完成時間比較早，也非常建議一定要讀過一次。以下針對提交u-boot的patch的準則，挑重點逐條解說。
 
 ## 提交u-boot patch的準則
 
-* Release early, release often. 這也是所有open source專案的最重要的準則之一。盡可能早一點release（新版本），盡可能頻繁的release。這樣新功能和新的bug fix才能越快讓使用者受益；如果有新的bug也才能及早發現，及早處理。這個準則對於送patch到專案也是一樣的。有的時候你的patch被拒絕不是因為他不好，可能只是需要跟大家討論，然後需要很多的修改以符合大家的需求。甚至在送出**PATCH**之前，就先把你的構想在郵件論壇上先找人討論，會有助於之後你送patch的工作。提出修改的構想，請論壇上的朋友給予意見，這種形式的作法我們通常叫他：**RFC**，Request for Comment。之後你就可以根據郵件論壇上大家討論的想法，來形成你要提交的patch的架構，以及撰寫的程式流程。
+* Release early, release often. 這也是所有open source專案的最重要的準則之一。盡可能早一點release（新版本），盡可能頻繁的release。這樣新功能和新的bug fix才能越快讓使用者受益；如果有新的bug也才能及早發現，及早處理。這個準則對於送patch到專案也是一樣的。有的時候你的patch被拒絕不是因為他不好，可能只是需要跟大家討論，然後需要很多的修改以符合大家的需求。甚至在送出[**PATCH**]之前，就先把你的構想在郵件論壇上先找人討論，會有助於之後你送patch的工作。提出修改的構想，請論壇上的朋友給予意見，這種形式的作法我們通常叫他：[**RFC**]，**Request for Comment**。之後你就可以根據郵件論壇上大家討論的想法，來形成你要提交的patch的架構，以及撰寫的程式流程。
+
+* 所有的patch都必須送到郵件論壇
+** 如果你的patch跟某些有固定的維護人員的檔案相關，請在郵件副本加上他們。為了防止後續版本的patch會忘記加上他們到CC:，你也可以在patch的commit message中的簽章之後，加上Cc:。
+** 記得加上有回覆你意見的其他人到Cc:，或者前面跟你改過同一個檔案的其他人。他們也會幫忙檢查後續版本的patch是否能符合他們的期待；或者你後來有更好的修改的方法！
+
+* Patches的修改必須是一個完整的邏輯
+** 不同且無關的修改必須分開成不同的patch set送出。一個程式功能的修改，只能送出一組patch set。
+** 如果一組邏輯的修正包含或者增加了新的檔案，那這些修改必須包在**一個patch**中送出。
+
+上面這兩段白話就是：譬如你寫了兩個個功能，那一個功能就只能包在一組patch set裡面。第二個功能要分開處理。如果有一個功能，新增了一個.h檔，兩個新的.c檔，修改兩個舊的.c檔；那這五個檔案都必須被包在同一個patch裡面送出。這樣可以維持邏輯上的先後順序，並且避免每一筆patch之間的編譯失敗。
