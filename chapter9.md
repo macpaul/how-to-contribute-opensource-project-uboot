@@ -67,19 +67,18 @@ Patch請用"master" branch為參照基礎，除非你要送的patch是針對rele
 * 標註程式屬性、版權宣告、簽章 [Attributing_Code_Copyrights_Sign](https://www.denx.de/wiki/view/U-Boot/Patches#Attributing_Code_Copyrights_Sign)
 >* 最重要的是送patch一定要記得用**git commit -s**簽章"**Signed-off-by:**"。
 >* 如果你有重大的改動，大到足以在這個檔案宣告所有權時，或是你從頭寫的一份新的檔案，才能在檔案的開頭宣告**GPLv2+ SPDX-License-Identifier**以及你個人所屬的Copyright。
-** 如果你從其他專案移植或者copy檔案到u-boot，請明確說明從哪裡Copy過來的，最好甚至提供copy來的**git commit ID**
+>* 如果你從其他專案移植或者copy檔案到u-boot，請明確說明從哪裡Copy過來的，最好甚至提供copy來的**git commit ID**
 
 * Commit message的慣例 [Commit message conventions](https://www.denx.de/wiki/view/U-Boot/Patches#Sending_updated_patch_versions)
-
-這邊比較瑣碎，但是讀一遍吧，加深印象只有益處。
+>* 這邊比較瑣碎，但是讀一遍吧，加深印象只有益處。
 
 * 提交新版patch [Sending updated patch versions](https://www.denx.de/wiki/view/U-Boot/Patches#Sending_updated_patch_versions)
 
-** 重送patch時，務必標上版本如"**[PATCH v2]**，可以用**git format-patch --subject-prefix="PATCH v2"**自動補上。
-** 在git commit簽章後到檔案列表中間，請務必手動補上每一筆patch的**ChangeLog**（修改的紀錄），由於cover letter並不會在維護人員管理patch的[Patchwork](http://patchwork.ozlabs.org/project/uboot/list/)中出現，就算你在cover-letter總結每一筆patch都在做什麼，你仍然需要在每一個版本的patch都補上ChangeLog。這邊請看u-boot wiki上的範例。
-** 為了維護郵件論壇上討論的品質，並且避免社群漏掉你某一版的patch，務必填上正確的"**In-reply-to:**"和"**References:**"的e-mail header。這樣patch跟社群給建議的討論串，才能用正確的順序方式呈現。也才會讓大家知道你這筆修正是針對哪個討論的部分送出的，並且維護正確的討論串的結構。
+>* 重送patch時，務必標上版本如"**[PATCH v2]**，可以用**git format-patch --subject-prefix="PATCH v2"**自動補上。
+>* 在git commit簽章後到檔案列表中間，請務必手動補上每一筆patch的**ChangeLog**（修改的紀錄），由於cover letter並不會在維護人員管理patch的[Patchwork](http://patchwork.ozlabs.org/project/uboot/list/)中出現，就算你在cover-letter總結每一筆patch都在做什麼，你仍然需要在每一個版本的patch都補上ChangeLog。這邊請看u-boot wiki上的範例。
+>* 為了維護郵件論壇上討論的品質，並且避免社群漏掉你某一版的patch，務必填上正確的"**In-reply-to:**"和"**References:**"的e-mail header。這樣patch跟社群給建議的討論串，才能用正確的順序方式呈現。也才會讓大家知道你這筆修正是針對哪個討論的部分送出的，並且維護正確的討論串的結構。
 
 * 務必檢查**master branch**能打上你的patch set，並且可以用**MAKEALL** script編譯所有的project，而沒有產生編譯warning和錯誤。
-** 同時建議使用out-of-tree編譯（用"-o" make option，以及"BUILD_DIR"環境變數）。例如：
+>* 同時建議使用out-of-tree編譯（用"-o" make option，以及"BUILD_DIR"環境變數）。例如：
 BUILD_DIR=/tmp/u-boot-build ./MAKEALL
-** 至少針對你的平台的architecture下所有的project都用MAKEALL編譯過一次。
+>* 至少針對你的平台的architecture下所有的project都用MAKEALL編譯過一次。
