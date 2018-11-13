@@ -96,6 +96,8 @@ BUILD_DIR=/tmp/u-boot-build ./MAKEALL
 
 注意到這組patch的標題嗎？你可以發現的他的影響範圍和順序是由小而大，第一筆是關於模組本身的修改，第二筆是開發板在device tree中指定這個模組的硬體參數，第三筆修改開發板初始化這個模組的設定，並且打開對應的CONFIG設定。
 
+郵件論壇紀錄每一筆的主旨，都記錄這筆的patch在patch set中的順序[[PATCH 1/3]]以及總共有幾筆。然後依序為，CPU架構名（或者是大的模組名稱），然後子模組名稱，最後是修改的主題。這筆patch set的目的是要在NDS32的CPU平台上，打開ftsdc010 DM的支援。所以才需要加上CPU的類別，不然一般就是模組分類，子功能和修改主旨這樣的形式。
+
 首先看到第一筆patch的內容結構。
 
 ![](/assets/ch9_tig_ftsdc010_patchset_02.png)
