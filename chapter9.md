@@ -86,6 +86,9 @@ BUILD_DIR=/tmp/u-boot-build ./MAKEALL
 我們來找一些實例看一下。譬如這組
 [[PATCH 1/3] nds32: mmc: Support ftsdc010 DM](https://lists.denx.de/pipermail/u-boot/2017-May/293468.html)。
 他由三筆patch組成：
->* [[PATCH 1/3] nds32: mmc: Support ftsdc010 DM](https://lists.denx.de/pipermail/u-boot/2017-May/293468.html)。
->* [[PATCH 2/3] nds32: dts: Support ftsdc010 DM](https://lists.denx.de/pipermail/u-boot/2017-May/293469.html)。
->* [[PATCH 3/3] nds32: board: Support ftsdc010 DM](https://lists.denx.de/pipermail/u-boot/2017-May/293470.html)。
+>* [[PATCH 1/3] nds32: mmc: Support ftsdc010 DM](https://lists.denx.de/pipermail/u-boot/2017-May/293468.html)
+>* [[PATCH 2/3] nds32: dts: Support ftsdc010 DM](https://lists.denx.de/pipermail/u-boot/2017-May/293469.html)
+>* [[PATCH 3/3] nds32: board: Support ftsdc010 DM](https://lists.denx.de/pipermail/u-boot/2017-May/293470.html)
+
+你可以用tig找到它們：
+![](/assets/ch9_tig_ftsdc010_patchset_01.png)
