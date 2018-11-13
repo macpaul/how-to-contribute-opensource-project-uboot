@@ -104,6 +104,10 @@ BUILD_DIR=/tmp/u-boot-build ./MAKEALL
 
 內容敘述的部分，請盡可能的將這筆patch目的、摘要描述清楚。BUG Fix有可能需要說明BUG的重製手法，解決BUG的root cause和方法，最好再附上BUG發生時的call dump或者back trace。如果是新增功能的部分，除了說明這筆patch新增的功能，也可以寫上他是根據什麼規格書？或是什麼需求？未來可以有什麼應用、擴充性和整合上對這個專案有什麼幫助等等。
 
-既然你知道這三筆patch是跟ftsdc010的DM功能有關，請看看這三筆patch，對原本既有的ftsdc010的功能，補DM功能相對應的compile option很重要。這樣可以把選項開關做出來，然後相關的程式的設定邏輯，也就不會跟其他功能相互影響造成side effect。例如：
+既然你知道這三筆patch是跟ftsdc010的DM功能有關，請看看這三筆patch的內容。既然是新增功能，對原本既有的ftsdc010的功能，補上新增DM功能相對應的compile option很重要。這樣可以把選項開關做出來，然後分隔相關的程式的設定邏輯，也就不會跟其他功能相互影響造成side effect。例如：
 
 ![](/assets/ch9_tig_ftsdc010_patchset_03.png)
+
+我們再看到另外一筆，這筆的內容敘述就寫得比較完整。連測試數據都有。
+
+![](/assets/ch9_tig_ftsdc010_patchset_04.png)
