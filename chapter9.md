@@ -81,3 +81,11 @@ Patch請用"master" branch為參照基礎，除非你要送的patch是針對rele
 >* 同時建議使用out-of-tree編譯（用"-o" make option，以及"BUILD_DIR"環境變數）。例如：
 BUILD_DIR=/tmp/u-boot-build ./MAKEALL
 >* 至少針對你的平台的architecture下所有的project都用MAKEALL編譯過一次。
+
+# 來看一些實例
+我們來找一些實例看一下。譬如這組
+[[PATCH 1/3] nds32: mmc: Support ftsdc010 DM](https://lists.denx.de/pipermail/u-boot/2017-May/293468.html)。
+他由三筆patch組成：
+>* [[PATCH 1/3] nds32: mmc: Support ftsdc010 DM](https://lists.denx.de/pipermail/u-boot/2017-May/293468.html)。
+>* [[PATCH 2/3] nds32: mmc: Support ftsdc010 DM](https://lists.denx.de/pipermail/u-boot/2017-May/293469.html)。
+>* [[PATCH 3/3] nds32: mmc: Support ftsdc010 DM](https://lists.denx.de/pipermail/u-boot/2017-May/293470.html)。
