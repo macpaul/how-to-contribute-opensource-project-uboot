@@ -37,12 +37,11 @@
 * 非功能上的改變，例如Coding style的修正，不要跟bug fix一起提交。並請加註：**cosmetic**。把這兩者分開對整個review過程大大的有幫助。不過你提交的bug fix仍然得符合coding style。
 
 * 使用checkpatch.pl的幾點建議（這邊只摘錄部分，原始內容還是請自己閱讀）
-** Checkpatch不是完美的，所以請用common sense來判斷他回報的結果。
-** 如果patch的一部份被報出問題，而且不是這次所patch修改的，而是已經存在的舊程式碼。請先送出coding style的修正，同時記得要標註**cosmetic**。
+>* Checkpatch不是完美的，所以請用common sense來判斷他回報的結果。
+>* 如果patch的一部份被報出問題，但是不是這次所patch修改到的部分，而是已經存在的其他舊程式碼。請先送出coding style的修正，同時記得要標註**cosmetic**。
 
-* 用純文字送出你的patch，禁止HTML、MIME、連結、壓縮、夾檔。只收純文字。
-
-最好的方法是用"git format-patch"指令。
+* **用純文字送出你的patch**。禁止HTML、MIME、連結、壓縮、夾檔。社群只收純文字。
+>> 最好的方法是用"git format-patch"指令。
 Patch請用"master" branch為參照基礎，除非你要送的patch是針對release cycle中的"next"。通常是release前測試版發現的bug修正，或是緊急到非得趕上release的特殊功能。
 
 * 確定你的電子郵件軟體不會亂改你的patch，譬如自動轉換tab和空白，或者自動斷行。因此最好是用"**git send-email**"或是"**git imap-send**"指令。
@@ -53,22 +52,21 @@ Patch請用"master" branch為參照基礎，除非你要送的patch是針對rele
 
 * 主旨必須帶**[PATCH]**字串，可以用**git format-patch**自動產生。
 
-* 如果你送出一組patch set，請確保主旨和標題有描述patch的順序和總數目。（**git format-pach -n**）。如果這組patch set比較複雜也比較多，你可以用（**git format-pach -n --cover-letter），多加一筆針對這份patch set的摘要說明的patch。
+* 如果你送出一組patch set，請確保主旨和標題有描述patch的順序和總數目。（**git format-pach -n**）。如果這組patch set比較複雜也比較多，你可以用（**git format-pach -n --cover-letter），這會多加一筆針對這份patch set的摘要說明的**前言patch**（第0筆patch）。
 
 * Patch的內容部分
-** Bug fix：要寫上原來是什麼bug，有什麼現象，或者如何重現這個bug。然後說明你如何修正這個問題。
-** New feature（新功能）：請說明這是什麼功能，然後你怎麼實做的。
+>* Bug fix：要寫上原來是什麼bug，有什麼現象，或者如何重現這個bug。然後說明你如何修正這個問題。
+>* New feature（新功能）：請說明這是什麼功能，然後你怎麼實做的。
 
-* 郵件論壇的郵件大小上限為100kB，如果一個patch的大小超過他，你可能就應該拆分你的patch成幾個不同的邏輯。如果你的patch在未壓縮的狀況下超過這個大小，而且絕對無法分割。這個時候才能使用URL的方式提交你的patch。請放在一個至少可以存在很長的時間的位置；用"pastebin"（一種貼上程式碼的網站）是不夠的。你可以把太大的patch放到u-boot的wiki[TooBigPatches](https://www.denx.de/wiki/U-Boot/TooBigPatches)這裡。
+* 郵件論壇的郵件大小上限為100kB，如果一個patch的大小超過x了，你就應該拆分你的patch成幾個不同的邏輯構成的patch set。如果你的patch在未壓縮的狀況下超過這個大小，而且又絕對無法分割。這個時候才能使用URL的方式提交你的patch。請放在一個至少可以存在很長的時間的位置；用"pastebin"（一種貼上程式碼的網站）是不夠的。你可以把太大的patch放到u-boot的wiki[TooBigPatches](https://www.denx.de/wiki/U-Boot/TooBigPatches)這裡。
 
 ## 其他請務必自行閱讀的重要守則
 
 其他在U-boot的[https://www.denx.de/wiki/U-Boot/Patches](https://www.denx.de/wiki/U-Boot/Patches) wiki頁面上提到的重要守則還很多，就請認真閱讀。再列出幾點特別注意的項目如下。
 
 * 標註程式屬性、版權宣告、簽章 [Attributing_Code_Copyrights_Sign](https://www.denx.de/wiki/view/U-Boot/Patches#Attributing_Code_Copyrights_Sign)
-
-** 最重要的是送patch一定要記得用**git commit -s**簽章"**Signed-off-by:**"。
-** 如果你有重大的改動，大到足以在這個檔案宣告所有權時，或是你從頭寫的一份新的檔案，才能在檔案的開頭宣告**GPLv2+ SPDX-License-Identifier**以及你個人所屬的Copyright。
+>* 最重要的是送patch一定要記得用**git commit -s**簽章"**Signed-off-by:**"。
+>* 如果你有重大的改動，大到足以在這個檔案宣告所有權時，或是你從頭寫的一份新的檔案，才能在檔案的開頭宣告**GPLv2+ SPDX-License-Identifier**以及你個人所屬的Copyright。
 ** 如果你從其他專案移植或者copy檔案到u-boot，請明確說明從哪裡Copy過來的，最好甚至提供copy來的**git commit ID**
 
 * Commit message的慣例 [Commit message conventions](https://www.denx.de/wiki/view/U-Boot/Patches#Sending_updated_patch_versions)
