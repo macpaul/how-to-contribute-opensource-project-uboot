@@ -93,3 +93,9 @@ BUILD_DIR=/tmp/u-boot-build ./MAKEALL
 你可以用tig找到它們：
 
 ![](/assets/ch9_tig_ftsdc010_patchset_01.png)
+
+注意到這組patch的標題嗎？你可以發現的他的影響範圍和順序是由小而大，第一筆是關於模組本身的修改，第二筆是開發板在device tree中指定這個模組的硬體參數，第三筆修改開發板初始化這個模組的設定，並且打開對應的CONFIG設定。
+
+首先看到第一筆patch的內容結構。
+
+![](/assets/ch9_tig_ftsdc010_patchset_02.png)
