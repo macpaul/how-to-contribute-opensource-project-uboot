@@ -91,4 +91,5 @@ BUILD_DIR=/tmp/u-boot-build ./MAKEALL
 >* [[PATCH 3/3] nds32: board: Support ftsdc010 DM](https://lists.denx.de/pipermail/u-boot/2017-May/293470.html)
 
 你可以用tig找到它們：
+
 ![](/assets/ch9_tig_ftsdc010_patchset_01.png)
