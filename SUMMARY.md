@@ -10,7 +10,7 @@
 * [CH6: git、編輯器、郵件設定等等](chapter6.md)
 * [CH7: 郵件論壇](chapter7.md)
 * [CH8: 第一次貢獻：清理程式排版](chapter8.md)
-* [CH9: 如何製作品質優良的patch](chapter9.md)
+* [CH9: 如何製作品質合格的patch](chapter9.md)
 * [CH10: 參與模組的開發](chapter10.md)
 * [CH11: 平台移植](chapter11.md)
 * [CH12: 成為專任維護人員](chapter12.md)
