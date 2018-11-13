@@ -110,4 +110,6 @@ BUILD_DIR=/tmp/u-boot-build ./MAKEALL
 
 我們再看到另外一筆，這筆的內容敘述就寫得比較完整。連測試數據都有。
 
+>* [[PATCH 3/3] nds32: spi: Support spi dm driver.](https://lists.denx.de/pipermail/u-boot/2017-September/306057.html)
+
 ![](/assets/ch9_tig_ftsdc010_patchset_04.png)
