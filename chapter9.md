@@ -96,8 +96,14 @@ BUILD_DIR=/tmp/u-boot-build ./MAKEALL
 
 注意到這組patch的標題嗎？你可以發現的他的影響範圍和順序是由小而大，第一筆是關於模組本身的修改，第二筆是開發板在device tree中指定這個模組的硬體參數，第三筆修改開發板初始化這個模組的設定，並且打開對應的CONFIG設定。
 
-郵件論壇紀錄每一筆的主旨，都記錄這筆的patch在patch set中的順序[[PATCH 1/3]]以及總共有幾筆。然後依序為，CPU架構名（或者是大的模組名稱），然後子模組名稱，最後是修改的主題。這筆patch set的目的是要在NDS32的CPU平台上，打開ftsdc010 DM的支援。所以才需要加上CPU的類別，不然一般就是模組分類，子功能和修改主旨這樣的形式。
+郵件論壇紀錄每一筆的主旨，都記錄這筆的patch在patch set中的順序[PATCH 1/3]以及總共有幾筆。然後依序為，CPU架構名（或者是大的模組名稱），然後子模組名稱，最後是修改的主題。這筆patch set的目的是要在NDS32的CPU平台上，打開ftsdc010 DM的支援。所以才需要加上CPU的類別，不然一般就是模組分類，子功能和修改主旨這樣的形式。
 
-首先看到第一筆patch的內容結構。
+首先看到第一筆patch的內容結構：
 
 ![](/assets/ch9_tig_ftsdc010_patchset_02.png)
+
+內容敘述的部分，請盡可能的將這筆patch目的、摘要描述清楚。BUG Fix有可能需要說明BUG的重製手法，解決BUG的root cause和方法，最好再附上BUG發生時的call dump或者back trace。如果是新增功能的部分，除了說明這筆patch新增的功能，也可以寫上他是根據什麼規格書？或是什麼需求？未來可以有什麼應用、擴充性和整合上對這個專案有什麼幫助等等。
+
+既然你知道這三筆patch是跟ftsdc010的DM功能有關，請看看這三筆patch，對原本既有的ftsdc010的功能，補DM功能相對應的compile option很重要。這樣可以把選項開關做出來，然後相關的程式的設定邏輯，也就不會跟其他功能相互影響造成side effect。例如：
+
+![](/assets/ch9_tig_ftsdc010_patchset_03.png)
