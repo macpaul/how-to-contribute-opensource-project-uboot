@@ -113,3 +113,18 @@ BUILD_DIR=/tmp/u-boot-build ./MAKEALL
 >* [[PATCH 3/3] nds32: spi: Support spi dm driver.](https://lists.denx.de/pipermail/u-boot/2017-September/306057.html)
 
 ![](/assets/ch9_tig_ftsdc010_patchset_04.png)
+
+# 其他應該熟練的小技巧
+
+* 熟練並且善用git rebase（git rebase -i HEAD~$，$為要重組的patch數目）。
+>* 你會需要經常使用git rebase來前後對調patch在patch set裡面的順序，也會需要使用squash功能將幾個相關的檔案，或者小的patch收納成一個單獨的patch。
+可以參看[為你自己學 Git - 把多個 Commit 合併成一個 Commit](https://gitbook.tw/chapters/rewrite-history/merge-multiple-commits-to-one-commit.html)
+
+* 開發階段，盡可能將patch set切的小一點，在真正送出patch的時候才進行squash（git rebase）動作。
+>* 有助於把patch set的邏輯建立清楚，審核patch的社群會比較容易讀懂patch，也助於測試過程。如果你的patch需要修改或者重新組合，這也比較省市。
+
+* 除了多開幾個工作用的working branch，也要經常使用git format-patch備份每一版的patch set。
+>* 如果你需要提交第二版，第三版等等的patch，就必須在如下圖的地方，加註每一版本的修改內容（change log）。但是這個區間是必須自己維護的，並不會存在git log中。而且一旦這些patch被用git am加到git repository中，這些change log就會消失。加註給社群看得change log只會出現在mailing list和download下來的patch file。因為社群和審核的人要看的patch真是多到爆炸，有的patch真的很複雜又很長，審核的人看到相似的code甚至還會搞混。所以你最好另外在local手動維護他們，在送出每一版patch的時候，另外再把他們貼到patch裡面。
+![](/assets/ch9_tig_change_log_05.png)
+>* 針對不只一個版本的patch維護，這邊提供另外一個作弊的小技巧。如下圖，看到了吧，其實你一樣還是可以把change log都寫在git commit裡面，放到git repository中一起維護；等到真的要提交到社群的時候，再編輯git format-patch產生的檔案，把這些change log移到"---"下面，檔案清單的上面這個區間，就可以輕鬆解決這個問題。這邊務必要注意，萬一你忘記重新編輯，change log被放在git commit裡面一起提交出去，你的整組patch都會被打回票罵到臭頭，還會被被要求重送新版喔。
+![](/assets/ch9_tig_change_log_cheate_06.png)
